@@ -19,7 +19,7 @@ const (
 	LPAREN    = "("
 	RPAREN    = ")"
 	LBRACE    = "{"
-	RBRACE    = "{"
+	RBRACE    = "}"
 	FUNCTION  = "FUNCTION"
 	LET       = "LET"
 	MINUS     = "-"
