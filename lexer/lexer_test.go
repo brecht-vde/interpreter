@@ -289,3 +289,34 @@ func TestNextToken_V7(t *testing.T) {
 		}
 	}
 }
+
+func TestNextToken_V8(t *testing.T) {
+	input := `{"foo": "bar"}`
+
+	tests := []struct {
+		expectedType    token.TokenType
+		expectedLiteral string
+	}{
+		{token.LBRACE, "{"},
+		{token.STRING, "foo"},
+		{token.COLON, ":"},
+		{token.STRING, "bar"},
+		{token.RBRACE, "}"},
+		{token.EOF, ""},
+	}
+
+	l := New(input)
+
+	for i, test := range tests {
+		tok := l.NextToken()
+
+		if tok.Type != test.expectedType {
+			t.Fatalf("tests[%d]- tokentype wrong. expected=%q, got=%q",
+				i, test.expectedType, tok.Type)
+		}
+		if tok.Literal != test.expectedLiteral {
+			t.Fatalf("tests[%d]- literal wrong. expected=%q, got=%q",
+				i, test.expectedLiteral, tok.Literal)
+		}
+	}
+}
